@@ -6,23 +6,21 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * This ensures the user is authenticated before accessing the home page.
-     */
+    // Require user to be logged in to access this controller
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard after login.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    // Show page after login/register
     public function index()
     {
-        return view('home'); // Make sure you have 'resources/views/home.blade.php'
+        $user = auth()->user();
+
+        if ($user->role === 'admin') {
+            return view('dashboard.admin'); // Admin dashboard
+        }
+
+        return view('index');  // Homepage for user & shelter
     }
 }

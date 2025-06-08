@@ -61,12 +61,48 @@
 
 	        </ul>
 				<div class="d-flex align-items-center flex-nowrap justify-content-end">
-                <a href="{{ route('register') }}" class="btn text-white py-2 px-3" style="background-color: #28A745; border: none; border-radius: 50px 0 0 50px; white-space: nowrap;">SignUp</a>
-                <a href="{{ url('/login') }}" class="btn py-2 px-3" style="background-color: #D4EFDF; color: #28A745; border: none; border-radius: 0 50px 50px 0; border-left: 1px solid #28A745; white-space: nowrap;">LogIn</a>
-                <a href="{{ url('/add-pet') }}" class="btn text-white ml-2 py-2 px-3" style="background-color: #28A745; border: none; border-radius: 50px; white-space: nowrap;"><span style="font-weight: bold;">+</span> Add a Pet</a>
-            </div>
-	      </div>
-	    </div>
+    @guest
+        <a href="{{ route('register') }}" class="btn text-white py-2 px-3 me-2"
+           style="background-color: #28A745; border-radius: 50px;">SignUp</a>
+        <a href="{{ route('login') }}" class="btn btn-outline-success py-2 px-3"
+           style="border-radius: 50px;">LogIn</a>
+    @else
+        @php
+            $nameParts = explode(' ', Auth::user()->name);
+            $initials = strtoupper(substr($nameParts[0], 0, 1));
+            if (count($nameParts) > 1) {
+                $initials .= strtoupper(substr($nameParts[1], 0, 1));
+            }
+        @endphp
+
+        <div class="dropdown me-3">
+            <a href="#" class="btn btn-profile border border-success text-success rounded-circle d-flex align-items-center justify-content-center"
+               style="width: 40px; height: 40px; font-weight: bold; font-size: 1rem; text-transform: uppercase; background-color: white;"
+               id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ $initials }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" href="{{ route('home') }}">Profile</a></li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Sign Out
+                    </a>
+                </li>
+            </ul>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+    @endguest
+
+    <a href="{{ url('/add-pet') }}" class="btn text-white py-2 px-3"
+       style="background-color: #28A745; border-radius: 50px;">
+        <strong>+</strong> Add a Pet
+    </a>
+</div>
+
+
 	  </nav>
     <!-- END nav -->
     <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">

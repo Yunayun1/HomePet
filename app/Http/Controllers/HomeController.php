@@ -13,14 +13,15 @@ class HomeController extends Controller
     }
 
     // Show page after login/register
-    public function index()
-    {
-        $user = auth()->user();
+public function index()
+{
+    $user = auth()->user();
 
-        if ($user->role === 'admin') {
-            return view('dashboard.admin'); // Admin dashboard
-        }
-
-        return view('index');  // Homepage for user & shelter
+    if ($user->email === 'admin168@gmail.com') {
+        return redirect('/admin');
     }
+
+    return view('index'); // normal user homepage
+}
+
 }

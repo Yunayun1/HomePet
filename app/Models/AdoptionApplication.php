@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShelterApplication extends Model
+class AdoptionApplication extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'organization_name',
+        'name',
         'email',
         'phone',
-        'address',
-        'proof_document',
-        'message',
+        'pet_name',
+        'reason',
     ];
 }

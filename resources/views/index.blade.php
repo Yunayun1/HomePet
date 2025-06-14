@@ -53,7 +53,7 @@
 	        <ul class="navbar-nav ml-auto mr-3">
 	        	<li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
 				<li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-				<li class="nav-item"><a href="{{ url('/Adopt') }}" class="nav-link">Adopt </a></li>
+				<li class="nav-item"><a href="{{ url('/adopt') }}" class="nav-link">Adopt </a></li>
 				<li class="nav-item"><a href="{{ url('/search') }}" class="nav-link">Search</a></li>
 				<li class="nav-item"><a href="{{ url('/gallery') }}" class="nav-link">Gallery</a></li>
 				<li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
@@ -96,10 +96,11 @@
         </div>
     @endguest
 
-    <a href="{{ url('/add-pet') }}" class="btn text-white py-2 px-3"
-       style="background-color: #28A745; border-radius: 50px;">
-        <strong>+</strong> Add a Pet
-    </a>
+    <a href="{{ route('pets.create') }}" class="btn text-white py-2 px-3"
+   style="background-color: #28A745; border-radius: 50px;">
+    <strong>+</strong> Add a Pet
+</a>
+
 </div>
 
 
@@ -473,7 +474,7 @@
                             <li><span class="fa fa-check mr-2"></span>Adoption Support</li>
                             <li><span class="fa fa-check mr-2"></span>Perfect Match</li>
                         </ul>
-                        <a href="#" class="btn btn-primary d-block px-2 py-3">Apply for Adoption</a>
+                        <a href="{{ route('applications.adoption.form') }}" class="btn btn-primary d-block px-2 py-3">Apply for Adoption</a>
                     </div>
                 </div>
             </div>
@@ -489,7 +490,7 @@
                             <li><span class="fa fa-check mr-2"></span>Vet Care Covered</li>
                             <li><span class="fa fa-check mr-2"></span>Support Team</li>
                         </ul>
-                        <a href="#" class="btn btn-primary d-block px-2 py-3">Apply for Shelter</a>
+                        <a href="{{ route('applications.shelter.form') }}" class="btn btn-primary d-block px-2 py-3">Apply for Shelter</a>
                     </div>
                 </div>
             </div>

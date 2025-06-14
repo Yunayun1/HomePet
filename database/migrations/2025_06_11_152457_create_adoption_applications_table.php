@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up()
 {
-    Schema::create('shelter_applications', function (Blueprint $table) {
+    Schema::create('adoption_applications', function (Blueprint $table) {
         $table->id();
-        $table->unsignedBigInteger('user_id');
+        $table->string('name');
+        $table->string('email');
+        $table->string('phone')->nullable();
+        $table->string('pet_name')->nullable();
         $table->text('message')->nullable();
-        $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
         $table->timestamps();
-
-        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
     });
 }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shelter_applications');
+        Schema::dropIfExists('adoption_applications');
     }
 };

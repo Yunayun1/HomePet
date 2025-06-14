@@ -14,18 +14,17 @@ use App\Http\Controllers\Admin\ManagePetController;
 
 // Public Pages
 // Public Pages (require auth)
-Route::view('/', 'index')->middleware('auth');
-Route::view('/about', 'about')->middleware('auth');
-Route::view('/blog', 'blog')->middleware('auth');
-Route::view('/adopt', 'adopt')->middleware('auth');
-Route::view('/search', 'search')->middleware('auth');
-Route::view('/blog-single', 'blog-single')->middleware('auth');
-Route::view('/contact', 'contact')->middleware('auth');
-Route::view('/gallery', 'gallery')->middleware('auth');
-Route::view('/main', 'main')->middleware('auth');
-Route::view('/pricing', 'pricing')->middleware('auth');
-Route::view('/services', 'services')->middleware('auth');
-Route::view('/vet', 'vet')->middleware('auth');
+Route::view('/', 'index')->name('home');
+Route::view('/about', 'about');
+Route::view('/blog', 'blog');
+Route::view('/Adopt', 'Adopt');
+Route::view('/blog-single', 'blog-single');
+Route::view('/contact', 'contact');
+Route::view('/gallery', 'gallery');
+Route::view('/main', 'main');
+Route::view('/pricing', 'pricing');
+Route::view('/services', 'services');
+Route::view('/vet', 'vet');
 
 //Admin routes group
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {

@@ -2,19 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\Auth\GoogleController; // Only this one!
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ShelterController;
 use App\Http\Controllers\Admin\AdoptionController;
 use App\Http\Controllers\Admin\PetController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\ApplicationController;
-use App\Models\User;
 use App\Http\Controllers\Admin\ManagePetController;
+use App\Models\User;
+
 
 // Public Pages
 // Public Pages (require auth)
-Route::view('/', 'index')->name('home');
+Route::view('/', 'index')->name('welcome');
 Route::view('/about', 'about');
 Route::view('/blog', 'blog');
 Route::view('/Adopt', 'Adopt');
@@ -36,9 +37,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('notifications', NotificationController::class);
 });
 
-// Route::resource('/admin/managepet', ManagePetController::class)
-//     ->middleware('auth'); 
-
 Route::get('/admin', function () {
     $activeUsersCount = User::where('is_banned', false)
                             ->where('role', '!=', 'admin')
@@ -58,14 +56,22 @@ Route::get('/apply-for-shelter', function () {
     return view('pets.apply-shelter');
 })->middleware('auth')->name('apply.shelter');
 
-// Shelter-specific routes (role check moved to controller)
-Route::get('/pets/create', [App\Http\Controllers\Admin\PetController::class, 'create'])->name('pets.create')->middleware('auth');
-Route::post('/pets', [App\Http\Controllers\Admin\PetController::class, 'store'])->name('pets.store')->middleware('auth');
+// // Form to add pet
+// Route::get('/pets/create', [PetController::class, 'create'])->name('pets.create')->middleware('auth');
+// Route::post('/pets', [PetController::class, 'store'])->name('pets.store')->middleware('auth');
+// Route::get('/pets', [PetController::class, 'index'])->name('pets.index');
+// Route::get('/pets/{pet}', [PetController::class, 'show'])->name('pets.show');
 
-// Adopt page routes
+
+// Route::get('/adopt', [PetController::class, 'index'])->name('adopt.index');
+// Route::get('/adopt/{id}', [PetController::class, 'show'])->name('adopt.show');
+
 Route::get('/adopt', [PetController::class, 'index'])->name('adopt.index');
-Route::get('/adopt/{pet}', [PetController::class, 'show'])->name('adopt.show');
+Route::get('/adopt/{id}', [PetController::class, 'show'])->name('adopt.show');
 
+Route::get('/pets', [App\Http\Controllers\Admin\PetController::class, 'index'])->name('pets.index');
+Route::get('/pets/create', [PetController::class, 'create'])->name('pets.create');
+Route::post('/pets', [PetController::class, 'store'])->name('pets.store');
 // Authentication routes
 Auth::routes();
 
@@ -74,6 +80,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home')
     ->middleware('auth');
 
-// Google Login
-Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
+
+Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

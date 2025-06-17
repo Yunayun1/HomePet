@@ -14,15 +14,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',        // role column
-        'address',     // if you store address
-        'phone',       // if you store phone
-        'is_banned',   // banned flag
-        'profile_picture', // Optional profile image
-        'last_login_at',  // Last login timestamp
-        'created_at',    // Creation timestamp
-        'updated_at',    // Update timestamp
-    ];
+        'role',
+        'address',
+        'phone',
+        'profile_picture',
+        'last_login_at',
+        'google_id', // <== add this
+        'created_at',
+        'updated_at',
+];
+
 
     protected $hidden = [
         'password',

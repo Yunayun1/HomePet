@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Pet;
 use Illuminate\Http\Request;
-use Auth;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
 {
@@ -51,10 +51,11 @@ class PetController extends Controller
     }
 
     public function index()
-    {
-        $pets = Pet::all();
-        return view('adopt.index', compact('pets'));
-    }
+{
+    $pets = Pet::all();
+    return view('adopt.index', compact('pets'));
+}
+
 
     public function show($id)
     {

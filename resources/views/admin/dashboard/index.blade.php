@@ -35,11 +35,6 @@
         <!-- Dashboard Content Grid -->
         <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- Active Users Card -->
-            <!--
-            This card displays the count of active users.
-            The value `{{ $activeUsersCount }}` is passed from the PHP controller.
-            -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
                 <!-- Card Header -->
                 <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 text-white text-center rounded-t-lg">
@@ -51,7 +46,7 @@
                     <div class="flex flex-col items-center justify-center">
                         <p class="text-5xl font-extrabold text-gray-800 mb-2">
                             <!-- Blade syntax to display the PHP variable -->
-                            {{ $activeUsersCount }}
+                            <!-- {{ $activeUsersCount }} -->
                         </p>
                         <p class="text-gray-600 text-sm">currently active on the platform</p>
                     </div>

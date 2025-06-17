@@ -19,53 +19,12 @@
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
   </head>
   <body>
-
-    <div class="wrap">
+@include('partials.navbar')
+    <!-- <div class="wrap">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-6 d-flex align-items-center">
-						<p class="mb-0 phone pl-md-2">
-							<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +012345678</a> 
-							<a href="#"><span class="fa fa-paper-plane mr-1"></span> homepet@email.com</a>
-						</p>
-					</div>
-					<div class="col-md-6 d-flex justify-content-md-end">
-						<div class="social-media">
-			    		<p class="mb-0 d-flex">
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
-			    		</p>
-		        </div>
-					</div>
 				</div>
 			</div>
-		</div>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>HomePet</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
-				<li class="nav-item active"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-				<li class="nav-item"><a href="{{ url('/Adopt') }}" class="nav-link">Adopt </a></li>
-				<li class="nav-item"><a href="{{ url('/search') }}" class="nav-link">Search</a></li>
-				<li class="nav-item"><a href="{{ url('/gallery') }}" class="nav-link">Gallery</a></li>
-				<li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
-				<li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
-	        </ul>
-			<div class="d-flex align-items-center flex-nowrap justify-content-end">
-                <a href="{{ url('/signup') }}" class="btn text-white py-2 px-3" style="background-color: #28A745; border: none; border-radius: 50px 0 0 50px; white-space: nowrap;">SignUp</a>
-                <a href="{{ url('/login') }}" class="btn py-2 px-3" style="background-color: #D4EFDF; color: #28A745; border: none; border-radius: 0 50px 50px 0; border-left: 1px solid #28A745; white-space: nowrap;">LogIn</a>
-                <a href="{{ url('/add-pet') }}" class="btn text-white ml-2 py-2 px-3" style="background-color: #28A745; border: none; border-radius: 50px; white-space: nowrap;"><span style="font-weight: bold;">+</span> Add a Pet</a>
-            </div>
-	      </div>
-	    </div>
-	  </nav>
+		</div> -->
     <!-- END nav -->
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -125,52 +84,6 @@
     </div>
 </section>
 
-    <section class="ftco-counter" id="section-counter">
-    	<div class="container">
-				<div class="row">
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="50">0</strong>
-              </div>
-              <div class="text">
-              	<span>Customer</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="8500">0</strong>
-              </div>
-              <div class="text">
-              	<span>Professionals</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="20">0</strong>
-              </div>
-              <div class="text">
-              	<span>Products</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="50">0</strong>
-              </div>
-              <div class="text">
-              	<span>Pets Hosted</span>
-              </div>
-            </div>
-          </div>
-        </div>
-    	</div>
-    </section>
 
     <section class="ftco-section bg-light ftco-faqs">
     	<div class="container">
@@ -440,76 +353,7 @@
     		</div>
     	</div>
     </section>
-
-    <footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Petsitting</h2>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<ul class="ftco-footer-social p-0">
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Latest News</h2>
-						<div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-					</div>
-					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-						<h2 class="footer-heading">Quick Links</h2>
-						<ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">Home</a></li>
-              <li><a href="#" class="py-2 d-block">About</a></li>
-              <li><a href="#" class="py-2 d-block">Services</a></li>
-              <li><a href="#" class="py-2 d-block">Works</a></li>
-              <li><a href="#" class="py-2 d-block">Blog</a></li>
-              <li><a href="#" class="py-2 d-block">Contact</a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Have a Questions?</h2>
-						<div class="block-23 mb-3">
-              <ul>
-                <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-              </ul>
-            </div>
-					</div>
-				</div>
-				<div class="row mt-5">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-			</div>
-		</footer>
+ @include('partials.footer')
 
     
   
@@ -536,6 +380,5 @@
 <script src="{{ asset('js/main.js') }}"></script>
 
 
-    
   </body>
-</html>
+</html>   

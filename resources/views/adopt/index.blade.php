@@ -7,7 +7,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
@@ -17,57 +16,11 @@
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
 </head>
 <body>
+    @include('partials.navbar')
 
-    <div class="wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 d-flex align-items-center">
-                    <p class="mb-0 phone pl-md-2">
-                        <a href="tel:+012345678" class="mr-2"><span class="fa fa-phone mr-1"></span> +012345678</a>
-                        <a href="mailto:homepet@email.com"><span class="fa fa-paper-plane mr-1"></span> homepet@email.com</a>
-                    </p>
-                </div>
-                <div class="col-md-6 d-flex justify-content-md-end">
-                    <div class="social-media">
-                        <p class="mb-0 d-flex">
-                            <a href="#" class="d-flex align-items-center justify-content-center" aria-label="Facebook"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center" aria-label="Twitter"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center" aria-label="Instagram"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>HomePet</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fa fa-bars"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-                    <li class="nav-item active"><a href="{{ url('/Adopt') }}" class="nav-link">Adopt</a></li>
-                    <li class="nav-item"><a href="{{ url('/search') }}" class="nav-link">Search</a></li>
-                    <li class="nav-item"><a href="{{ url('/gallery') }}" class="nav-link">Gallery</a></li>
-                    <li class="nav-item"><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="d-flex align-items-center flex-nowrap justify-content-end">
-                    <a href="{{ url('/signup') }}" class="btn text-white py-2 px-3" style="background-color: #28A745; border: none; border-radius: 50px 0 0 50px; white-space: nowrap;">Sign Up</a>
-                    <a href="{{ url('/login') }}" class="btn py-2 px-3" style="background-color: #D4EFDF; color: #28A745; border: none; border-radius: 0 50px 50px 0; border-left: 1px solid #28A745; white-space: nowrap;">Log In</a>
-                    <a href="{{ url('/add-pet') }}" class="btn text-white ml-2 py-2 px-3" style="background-color: #28A745; border: none; border-radius: 50px; white-space: nowrap;"><span style="font-weight: bold;">+</span> Add a Pet</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-end">
@@ -180,7 +133,7 @@
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
         </svg>
     </div>
-
+    
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -197,6 +150,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('js/google-map.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-
 </body>
 </html>

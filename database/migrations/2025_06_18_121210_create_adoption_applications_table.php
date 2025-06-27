@@ -14,7 +14,7 @@ class CreateAdoptionApplicationsTable extends Migration
             $table->string('email');
             $table->string('phone')->nullable();
             $table->string('pet_name')->nullable();
-            $table->text('reason');
+            $table->text('reason')->nullable();
             $table->timestamps();
         });
     }

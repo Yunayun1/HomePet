@@ -3,45 +3,48 @@
 @section('content')
 <style>
     body {
-        color: black;
+        color: #333; /* Darker text for better readability */
         font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa; /* Light background */
     }
 
     .container {
         max-width: 1200px;
         margin: 40px auto;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        color: black;
+        padding: 30px; /* Increased padding */
+        border-radius: 12px; /* More rounded corners */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        background-color: white; /* White container */
+        color: #333;
     }
 
     h1, h2 {
-        color: black;
+        color: #343a40; /* Darker heading */
         text-align: left;
         margin-bottom: 30px;
-        font-size: 2.5em;
+        font-size: 2.2em; /* Slightly smaller heading */
     }
 
     .alert {
         padding: 15px;
         margin-bottom: 20px;
-        border-radius: 5px;
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
+        border-radius: 8px;
+        background-color: #d1e7dd; /* Success background */
+        color: #0f5132; /* Success text */
+        border: 1px solid #badbcc;
     }
 
     .create-pet-btn {
         display: inline-block;
         background-color: #007bff;
         color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
+        padding: 12px 24px; /* Larger button */
+        border-radius: 8px;
         text-decoration: none;
-        font-weight: bold;
+        font-weight: 600; /* Semi-bold */
         transition: background-color 0.3s ease;
         margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Button shadow */
     }
 
     .create-pet-btn:hover {
@@ -51,25 +54,33 @@
     /* Search form styles */
     form.search-form {
         margin-bottom: 20px;
+        display: flex; /* Flexbox for layout */
+        align-items: center; /* Vertically center items */
     }
 
     form.search-form input[type="text"] {
-        padding: 8px 12px;
+        padding: 10px 16px;
         width: 300px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
+        border-radius: 8px;
+        border: 1px solid #ced4da; /* Light border */
         font-size: 1em;
+        transition: border-color 0.3s ease;
+    }
+
+    form.search-form input[type="text"]:focus {
+        outline: none;
+        border-color: #80bdff; /* Focused border color */
     }
 
     form.search-form button {
-        padding: 8px 16px;
-        border-radius: 5px;
+        padding: 10px 16px;
+        border-radius: 8px;
         background-color: #007bff;
         color: white;
         border: none;
         cursor: pointer;
         font-weight: bold;
-        margin-left: 8px;
+        margin-left: 10px;
         transition: background-color 0.3s ease;
     }
 
@@ -83,26 +94,29 @@
         font-weight: bold;
         text-decoration: none;
         cursor: pointer;
+        transition: color 0.3s ease;
     }
 
     form.search-form a.clear-btn:hover {
         text-decoration: underline;
+        color: #c82333;
     }
 
     .pet-table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
-        border-radius: 8px;
+        border-radius: 12px;
         overflow: hidden;
-        color: black;
+        color: #333;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Table shadow */
     }
 
     .pet-table th,
     .pet-table td {
-        padding: 12px 15px;
+        padding: 14px 18px; /* Increased padding */
         text-align: left;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid #dee2e6; /* Light border */
         vertical-align: middle;
     }
 
@@ -110,25 +124,27 @@
         font-weight: bold;
         text-transform: uppercase;
         font-size: 0.9em;
+        background-color: #f2f2f2; /* Light gray header */
     }
 
     .pet-table tbody tr:hover {
-        background-color: #e0e0e0;
+        background-color: #f5f5f5; /* Light hover */
     }
 
     .actions-column a,
     .actions-column button {
-        padding: 8px 12px;
-        border-radius: 5px;
+        padding: 10px 16px;
+        border-radius: 8px;
         text-decoration: none;
-        font-size: 0.85em;
-        font-weight: bold;
+        font-size: 0.9em;
+        font-weight: 600;
         cursor: pointer;
         transition: background-color 0.3s ease, color 0.3s ease;
         margin-right: 5px;
         border: none;
         display: inline-block;
         color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .actions-column a.edit-btn {
@@ -153,8 +169,13 @@
         object-position: center center;
         display: block;
         overflow: hidden;
-        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        box-shadow: 0 0 8px rgba(0,0,0,0.2); /* Image shadow */
         cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+        transition: transform 0.2s ease-in-out;
+    }
+
+    img.pet-thumb:hover {
+        transform: scale(1.1); /* Slight zoom on hover */
     }
 
     /* Styles for the image modal */
@@ -195,6 +216,132 @@
         color: #bbb;
         text-decoration: none;
         cursor: pointer;
+    }
+
+    /* Styles for the toggle button */
+    .toggle-adopters-btn {
+        background: none;
+        border: none;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        vertical-align: middle; /* Align with text */
+        margin-left: 5px;
+        color: #6c757d; /* A subtle color for the arrow */
+    }
+
+    .toggle-adopters-btn.rotated {
+        transform: rotate(90deg); /* Rotate for expanded state */
+    }
+
+    .toggle-adopters-btn:hover {
+        transform: scale(1.2); /* Slight zoom on hover */
+    }
+
+    /* Adopter details styles */
+    .adopters-details-row {
+        background-color: #fefefe; /* Very light background for the expanded row */
+    }
+
+    .adopters-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0 0; /* Adjusted margin */
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap */
+        gap: 15px; /* Spacing between adopter cards */
+    }
+
+    .adopter-card {
+        flex: 1 1 calc(50% - 15px); /* Two columns, adjust as needed */
+        min-width: 300px; /* Minimum width for cards */
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* More prominent shadow for cards */
+        border: 1px solid #e9ecef; /* Light border */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .adopter-info {
+        font-size: 0.95em;
+        margin-bottom: 15px; /* Space between info and buttons */
+    }
+
+    .adopter-info div {
+        margin-bottom: 5px; /* Space between individual info lines */
+    }
+
+    .adopter-info strong {
+        color: #495057; /* Slightly darker for labels */
+        font-weight: 600;
+    }
+
+    .adopter-status {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 0.85em;
+        margin-left: 8px;
+        text-transform: capitalize; /* Capitalize status text */
+    }
+
+    .adopter-status.Approved {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .adopter-status.Rejected {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .adopter-status.Pending {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .adopter-actions {
+        display: flex;
+        gap: 10px; /* Space between buttons */
+        margin-top: 10px; /* Ensure space from info */
+    }
+
+    .adopter-actions button {
+        flex: 1; /* Make buttons take equal width */
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        font-weight: 600;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease; /* Smooth transition for all properties */
+    }
+
+    .adopter-actions button[type="submit"][value="Approved"] { /* Targeting the Approve button */
+        background-color: #28a745;
+    }
+    .adopter-actions button[type="submit"][value="Approved"]:hover {
+        background-color: #218838;
+        transform: translateY(-1px); /* Slight lift on hover */
+    }
+
+    .adopter-actions button[type="submit"][value="Rejected"] { /* Targeting the Reject button */
+        background-color: #dc3545;
+    }
+    .adopter-actions button[type="submit"][value="Rejected"]:hover {
+        background-color: #c82333;
+        transform: translateY(-1px); /* Slight lift on hover */
+    }
+
+    /* Responsive adjustments for adopter cards */
+    @media (max-width: 992px) {
+        .adopter-card {
+            flex: 1 1 calc(100% - 15px); /* Single column on smaller screens */
+            min-width: unset;
+        }
     }
 </style>
 
@@ -241,7 +388,6 @@
                     <td>{{ $index + $pets->firstItem() }}</td>
                     <td>
                         @if ($pet->image)
-                            {{-- Add data-full-src for the full image path --}}
                             <img src="{{ asset('images/' . $pet->image) }}"
                                  alt="{{ $pet->name }}"
                                  class="pet-thumb"
@@ -250,7 +396,16 @@
                             <span>No Image</span>
                         @endif
                     </td>
-                    <td>{{ $pet->name }}</td>
+                    <td>
+                        {{ $pet->name }}
+                        {{-- Toggle Button --}}
+                        @php $adopters = $adoptionApplications->where('pet_name', $pet->name); @endphp
+                        @if ($adopters->count() > 0)
+                            <button onclick="toggleAdopters('adopters-{{ $pet->id }}', this)"
+                                    class="toggle-adopters-btn">
+                                &gt; </button>
+                        @endif
+                    </td>
                     <td>{{ $pet->type }}</td>
                     <td>{{ $pet->age ?? '-' }}</td>
                     <td>{{ $pet->behavior ?? '-' }}</td>
@@ -267,12 +422,59 @@
                         </form>
                     </td>
                 </tr>
+
+                {{-- Hidden Row for Adopters --}}
+                @if ($adopters->count() > 0)
+                <tr id="adopters-{{ $pet->id }}" class="adopters-details-row" style="display: none;">
+                    <td colspan="9">
+                        <strong>Adoption Requests for {{ $pet->name }}:</strong>
+                        <ul class="adopters-list">
+                            @foreach ($adopters as $adopter)
+                                <li class="adopter-card">
+                                    <div class="adopter-info">
+                                        <div><strong>Name:</strong> {{ $adopter->name }}</div>
+                                        <div><strong>Email:</strong> {{ $adopter->email }}</div>
+                                        <div><strong>Phone:</strong> {{ $adopter->phone }}</div>
+                                        <div>
+                                            <strong>Status:</strong>
+                                            <span class="adopter-status {{ $adopter->status }}">
+                                                {{ $adopter->status ?? 'Pending' }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="adopter-actions">
+                                        <form action="{{ route('admin.adoptions.update', $adopter->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="Approved">
+                                            <button type="submit" value="Approved">
+                                                Approve
+                                            </button>
+                                        </form>
+
+                                        <form action="{{ route('admin.adoptions.update', $adopter->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="Rejected">
+                                            <button type="submit" value="Rejected">
+                                                Reject
+                                            </button>
+                                        </form>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </td>
+                </tr>
+                @endif
             @empty
                 <tr>
                     <td colspan="9" class="text-center">No pets found.</td>
                 </tr>
             @endforelse
         </tbody>
+
     </table>
 
     <div class="mt-3">
@@ -312,6 +514,17 @@
     modal.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+        }
+    }
+
+    function toggleAdopters(id, button) {
+        const row = document.getElementById(id);
+        if (row.style.display === 'none') {
+            row.style.display = 'table-row';
+            button.classList.add('rotated'); // Add class to rotate arrow
+        } else {
+            row.style.display = 'none';
+            button.classList.remove('rotated'); // Remove class to unrotate arrow
         }
     }
 </script>

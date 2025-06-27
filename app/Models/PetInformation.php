@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pet extends Model
+class PetInformation extends Model
 {
     use HasFactory;
+
+    protected $table = 'pet_information'; // 👈 VERY IMPORTANT
 
     protected $fillable = [
         'name',
@@ -20,7 +22,6 @@ class Pet extends Model
         'image',
     ];
 
-    // Relationship to shelter (user with role = shelter)
     public function shelter()
     {
         return $this->belongsTo(User::class, 'shelter_id');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Pet;
 use App\Models\User;
+use App\Models\AdoptionApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,8 +21,12 @@ class ManagePetController extends Controller
             })
             ->paginate(10);
 
-        return view('admin.managepet.index', compact('pets'));
+        // Load all adoption applications (you can optimize this if needed)
+        $adoptionApplications = AdoptionApplication::all();
+
+        return view('admin.managepet.index', compact('pets', 'adoptionApplications'));
     }
+
 
     public function create()
     {

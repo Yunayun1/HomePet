@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShelterApplicationsTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -14,7 +14,7 @@ class CreateShelterApplicationsTable extends Migration
             $table->string('email');
             $table->string('phone')->nullable();
             $table->string('address');
-            $table->string('proof_document')->nullable();
+            $table->string('proof_document'); // maybe file path or name
             $table->text('message')->nullable();
             $table->timestamps();
         });
@@ -24,4 +24,4 @@ class CreateShelterApplicationsTable extends Migration
     {
         Schema::dropIfExists('shelter_applications');
     }
-}
+};

@@ -7,6 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
@@ -16,11 +17,13 @@
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
 </head>
 <body>
-    @include('partials.navbar')
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+	@include('partials.navbar')
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-end">
@@ -32,7 +35,28 @@
         </div>
     </section>
 
-    <div class="container mx-auto px-4 py-8"> <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <form method="GET" action="{{ route('adopt.index') }}" class="mb-8 flex justify-center items-center gap-2 mt-8">
+        <input
+            type="text"
+            name="search"
+            value="{{ request('search') }}"
+            placeholder="Search pets by name..."
+            class="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-green-500 w-full max-w-md"
+        >
+        <button
+            type="submit"
+            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition-colors duration-300 flex items-center justify-center"
+            aria-label="Search"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+        </button>
+    </form>
+
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($pets as $pet)
                 <a href="{{ route('adopt.show', $pet->id) }}" class="block">
                     <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
@@ -42,7 +66,7 @@
                         <div class="p-4">
                             <h2 class="text-xl font-semibold text-gray-800 mb-1">{{ $pet->name }}</h2>
 
-                            <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                            <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
                                 View Details
                             </button>
                         </div>
@@ -133,7 +157,7 @@
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
         </svg>
     </div>
-    
+
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -150,5 +174,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('js/google-map.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+
 </body>
 </html>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Pet;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+use App\Http\Controllers\Controller;
 
 class PetController extends Controller
 {
@@ -50,9 +50,16 @@ class PetController extends Controller
         return redirect()->route('adopt.index')->with('success', 'Pet added successfully!');
     }
 
-    public function index()
+  public function index(Request $request)
 {
-    $pets = Pet::all();
+    $query = Pet::query();
+
+    if ($request->has('search') && $request->search !== null) {
+        $query->where('name', 'LIKE', '%' . $request->search . '%');
+    }
+
+    $pets = $query->latest()->get();
+
     return view('adopt.index', compact('pets'));
 }
 

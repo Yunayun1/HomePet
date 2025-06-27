@@ -129,8 +129,6 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Pet Name</th>
-                    <th>Times Adopted</th>
-                    <th>Reason</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -138,22 +136,35 @@
             <tbody>
                 @forelse($adoptions as $adoption)
                     <tr>
-                        <td>{{ $adoption->name }}</td>
-                        <td>{{ $adoption->email }}</td>
-                        <td>{{ $adoption->phone }}</td>
-                        <td>{{ $adoption->pet_name }}</td>
-                        <td>{{ $adoption->adoption_count }}</td>
-                        <td>{{ $adoption->reason }}</td>
-                        <td>{{ $adoption->status }}</td>
-                        <td>
-                            <a href="{{ route('admin.adoptions.edit', $adoption->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('admin.adoptions.destroy', $adoption->id) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" onclick="return confirm('Delete this adoption?')" class="btn btn-sm btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
+    <td>{{ $adoption->name }}</td>
+    <td>{{ $adoption->email }}</td>
+    <td>{{ $adoption->phone }}</td>
+    <td>{{ $adoption->pet_name }}</td>
+    <td>
+        <form action="{{ route('admin.adoptions.update', $adoption->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="status" value="Approved">
+            <button type="submit" class="btn btn-sm btn-success">Approve</button>
+        </form>
+
+        <form action="{{ route('admin.adoptions.update', $adoption->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="status" value="Rejected">
+            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+        </form>
+    </td>
+    <td>
+        <a href="{{ route('admin.adoptions.edit', $adoption->id) }}" class="btn btn-sm btn-warning">Edit</a>
+        <form action="{{ route('admin.adoptions.destroy', $adoption->id) }}" method="POST" style="display:inline-block;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" onclick="return confirm('Delete this adoption?')" class="btn btn-sm btn-danger">Delete</button>
+        </form>
+    </td>
+</tr>
+
                 @empty
                     <tr>
                         <td colspan="8" class="text-center text-muted">No adoption records found.</td>

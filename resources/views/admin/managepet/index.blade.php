@@ -388,13 +388,17 @@
                     <td>{{ $index + $pets->firstItem() }}</td>
                     <td>
                         @if ($pet->image)
-                            <img src="{{ asset('images/' . $pet->image) }}"
-                                 alt="{{ $pet->name }}"
-                                 class="pet-thumb"
-                                 data-full-src="{{ asset('images/' . $pet->image) }}" />
-                        @else
-                            <span>No Image</span>
-                        @endif
+                    <img 
+                        src="{{ asset('storage/' . $pet->image) }}" 
+                        alt="{{ $pet->name }}" 
+                        class="pet-thumb" 
+                        data-full-src="{{ asset('storage/' . $pet->image) }}"
+                        onerror="this.onerror=null;this.src='https://placehold.co/150x150/a78bfa/ffffff?text=No+Image';"
+                    />
+                @else
+                    <span>No Image</span>
+                @endif
+
                     </td>
                     <td>
                         {{ $pet->name }}

@@ -15,7 +15,8 @@
             </ul>
         </div>
     @endif
-    <form method="POST" action="{{ route('applications.adoption.submit') }}">
+    <form method="POST" action="{{ route('applications.adoption-submit') }}">
+
         @csrf
         <div class="form-group">
             <label>Name</label>

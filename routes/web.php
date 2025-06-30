@@ -12,8 +12,8 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Models\User;
 use App\Http\Controllers\Admin\ManagePetController;
+use App\Http\Controllers\Auth\OtpController;
 
-// Public Pages
 // Public Pages (require auth)
 Route::view('/', 'index')->name('home');
 Route::view('/about', 'about');
@@ -33,26 +33,27 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::match(['post', 'put'], 'users/{user}/ban', [UserController::class, 'ban'])->name('users.ban');
     Route::post('users/{user}/unban', [UserController::class, 'unban'])->name('users.unban');
     Route::resource('adoptions', AdoptionController::class);
+    Route::resource('shelters', ShelterController::class)->middleware('auth');
+    Route::put('shelters/{id}', [App\Http\Controllers\Admin\ShelterController::class, 'update'])->name('shelters.update');
     Route::resource('managepet', ManagePetController::class);
     Route::resource('notifications', NotificationController::class);
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard/statistics', [DashboardController::class, 'statistics'])->name('dashboard.statistics');
+    Route::put('shelters/{id}', [AdoptionController::class, 'update'])->name('shelters.update');
+
+
 });
-
-// Route::resource('/admin/managepet', ManagePetController::class)
-//     ->middleware('auth'); 
-
-Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 
 // Application forms
 Route::get('/adoption', [ApplicationController::class, 'showAdoptionForm'])->name('application.adoption-form');
-Route::post('/adoption', [ApplicationController::class, 'submitAdoption'])->name('application.submit-adoption');
-
-//for manage adoption in admin dashbord
+Route::post('/adoption-submit', [ApplicationController::class, 'submitAdoption'])
+    ->name('applications.adoption-submit');
 Route::resource('adoptions', AdoptionController::class)->middleware('auth');
 
 
 Route::get('/shelter', [ApplicationController::class, 'showShelterForm'])->name('application.shelter-form');
-Route::post('/shelter', [ApplicationController::class, 'submitShelter'])->name('application.submit-shelter');
+Route::post('/shelter', [ApplicationController::class, 'submitShelter'])->name('applications.submit-shelter');
 Route::post('/shelter-submit', [ApplicationController::class, 'submitShelter'])->name('application.shelter-submit');
 
 // Route for non-shelters to apply when blocked from adding a pet
@@ -80,3 +81,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 // Google Login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
+
+Route::get('login/otp', [OtpController::class, 'showLoginForm'])->name('login.otp.form');
+Route::post('login/otp/send', [OtpController::class, 'sendOtp'])->name('login.otp.send');
+Route::post('login/otp/verify', [OtpController::class, 'verifyOtp'])->name('login.otp.verify');

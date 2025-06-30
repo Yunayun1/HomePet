@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Pet;
 use App\Models\User;
 use App\Models\AdoptionApplication;
+use App\Models\ShelterApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ManagePetController extends Controller
 {
-    public function index(Request $request)
+     public function index(Request $request)
     {
         $search = $request->input('search');
 
@@ -24,7 +25,10 @@ class ManagePetController extends Controller
         // Load all adoption applications (you can optimize this if needed)
         $adoptionApplications = AdoptionApplication::all();
 
-        return view('admin.managepet.index', compact('pets', 'adoptionApplications'));
+        // Load all shelter applications (paginated)
+        $shelterApplications = ShelterApplication::paginate(10);
+
+        return view('admin.managepet.index', compact('pets', 'adoptionApplications', 'shelterApplications'));
     }
 
 
@@ -49,7 +53,8 @@ class ManagePetController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('pets', 'public');
+            // Changed 'pets' to 'images' here
+            $data['image'] = $request->file('image')->store('images', 'public');
         }
 
         Pet::create($data);
@@ -84,7 +89,8 @@ class ManagePetController extends Controller
             if ($pet->image) {
                 Storage::disk('public')->delete($pet->image);
             }
-            $data['image'] = $request->file('image')->store('pets', 'public');
+            // Changed 'pets' to 'images' here
+            $data['image'] = $request->file('image')->store('images', 'public');
         }
 
         $pet->update($data);

@@ -36,6 +36,8 @@
             border-radius: 12px; /* Consistent rounded corners */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Consistent shadow */
             overflow: hidden; /* Ensures content respects border-radius */
+            display: flex; /* Use flexbox for internal layout */
+            flex-direction: column; /* Stack items vertically */
         }
 
         h2 {
@@ -48,11 +50,15 @@
 
         .pet-image-wrapper {
             width: 100%;
-            max-height: 600px; /* Max height for the image */
+            max-height: 400px; /* Adjusted max height for images for better aspect ratio */
             overflow: hidden;
             border-radius: 10px; /* Slightly rounded image corners */
             margin-bottom: 30px; /* Space below image */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Soft shadow for image */
+            display: flex; /* Use flexbox to center image vertically/horizontally */
+            justify-content: center;
+            align-items: center;
+            background-color: #e9ecef; /* Placeholder background for image area */
         }
 
         .pet-image-wrapper img {
@@ -122,10 +128,26 @@
 
         .actions {
             display: flex;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
             justify-content: flex-end; /* Aligns buttons to the right */
             gap: 15px; /* Space between buttons */
             margin-top: 30px;
         }
+
+        @media (max-width: 600px) {
+            .actions {
+                justify-content: center; /* Center buttons on small screens */
+            }
+            .back-button {
+                margin-right: 0; /* Remove auto margin on small screens */
+                width: 100%; /* Make back button full width */
+                margin-bottom: 15px; /* Add space below back button */
+            }
+            .btn-adopt, .btn-love, .btn-follow {
+                flex-grow: 1; /* Allow other buttons to grow and fill space */
+            }
+        }
+
 
         .back-button, .btn-adopt, .btn-love, .btn-follow {
             display: inline-flex; /* Changed to inline-flex to center icon/text */
@@ -253,9 +275,15 @@
 <body>
     <div class="container">
         <h2>Meet {{ $pet->name }}!</h2>
+        
         <div class="pet-image-wrapper">
-            <img src="{{ asset('images/' . $pet->image) }}" alt="Image of {{ $pet->name }}"
-                 onerror="this.onerror=null;this.src='https://placehold.co/700x400/a78bfa/ffffff?text=Image+Not+Available';">
+            {{-- The `src` attribute is the key. It should point to the public URL of your image. --}}
+            <img 
+                src="{{ $pet->image ? asset('storage/' . $pet->image) : 'https://placehold.co/700x400/a78bfa/ffffff?text=Image+Not+Available' }}" 
+                alt="{{ $pet->name }}" 
+                {{-- Removed redundant width attribute here, as CSS handles sizing --}}
+                onerror="this.onerror=null;this.src='https://placehold.co/700x400/a78bfa/ffffff?text=Image+Not+Available';"
+            >
         </div>
 
         <div class="detail-grid">
@@ -303,7 +331,8 @@
             const followButton = document.getElementById('followBtn');
             
             // Initial states (in a real app, these would come from the server)
-            let isLoved = false;
+            // You might load these from a data attribute or a server-side variable
+            let isLoved = false; 
             let isFollowed = false;
 
             // Love Button Logic
@@ -333,13 +362,13 @@
                 const textSpan = followButton.querySelector('span:not(.emoji)'); // Target the text span
 
                 if (isFollowed) {
-                    emojiSpan.textContent = '👥'; // Two people emoji when followed
-                    textSpan.textContent = 'Following'; // Change text to "Following"
+                    emojiSpan.textContent = '👥'; 
+                    textSpan.textContent = 'Following'; 
                     console.log('Pet followed!');
                     // Example AJAX: fetch('/api/pets/{{ $pet->id }}/follow', { method: 'POST' });
                 } else {
-                    emojiSpan.textContent = '👤'; // Single person emoji when unfollowed
-                    textSpan.textContent = 'Follow'; // Change text back to "Follow"
+                    emojiSpan.textContent = '👤'; 
+                    textSpan.textContent = 'Follow'; 
                     console.log('Pet unfollowed!');
                     // Example AJAX: fetch('/api/pets/{{ $pet->id }}/unfollow', { method: 'POST' });
                 }

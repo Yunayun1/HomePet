@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,14 +11,17 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-{
-    \App\Models\User::create([
-        'name' => 'Admin',
-        'email' => 'admin168@gmail.com',
-        'password' => bcrypt('admin168'),
-        
-        
-    ]);
-}
+    {
+        // Check if admin already exists to avoid duplicate error
+        User::firstOrCreate(
+            ['email' => 'admin168@gmail.com'],
+            [
+                'name' => 'Admin',
+                'password' => bcrypt('admin168'),
+            ]
+        );
 
+        // Call ShelterApplicationSeeder
+        $this->call(ShelterApplicationSeeder::class);
+    }
 }

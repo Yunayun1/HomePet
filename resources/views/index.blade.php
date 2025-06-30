@@ -344,7 +344,7 @@
                             <li><span class="fa fa-check mr-2"></span>Adoption Support</li>
                             <li><span class="fa fa-check mr-2"></span>Perfect Match</li>
                         </ul>
-                        <a href="{{ route('applications.adoption.form') }}" class="btn btn-primary d-block px-2 py-3">Apply for Adoption</a>
+                        <a href="{{ route('applications.adoption-form') }}" class="btn btn-primary d-block px-2 py-3">Apply for Adoption</a>
                     </div>
                 </div>
             </div>
@@ -360,7 +360,7 @@
                             <li><span class="fa fa-check mr-2"></span>Vet Care Covered</li>
                             <li><span class="fa fa-check mr-2"></span>Support Team</li>
                         </ul>
-                        <a href="{{ route('applications.shelter.form') }}" class="btn btn-primary d-block px-2 py-3">Apply for Shelter</a>
+                        <a href="{{ route('applications.shelter-form') }}" class="btn btn-primary d-block px-2 py-3">Apply for Shelter</a>
                     </div>
                 </div>
             </div>

@@ -55,32 +55,37 @@
     </form>
 
 
-    <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @foreach ($pets as $pet)
-                <a href="{{ route('adopt.show', $pet->id) }}" class="block">
-                    <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                        <img src="{{ asset('images/' . $pet->image) }}" alt="Image of {{ $pet->name }}" class="w-full h-48 object-cover object-center rounded-t-lg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/400x300/a78bfa/ffffff?text=No+Image';">
+<div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        @foreach ($pets as $pet)
+            <a href="{{ route('adopt.show', $pet->id) }}" class="block">
+                <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <img 
+                        src="{{ $pet->image ? asset('storage/' . $pet->image) : '' }}" 
+                        alt="Image of {{ $pet->name }}" 
+                        class="w-full h-48 object-cover object-center rounded-t-lg"
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x300/a78bfa/ffffff?text=No+Image';"
+                    >
 
-                        <div class="p-4">
-                            <h2 class="text-xl font-semibold text-gray-800 mb-1">{{ $pet->name }}</h2>
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-1">{{ $pet->name }}</h2>
 
-                            <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
-                                View Details
-                            </button>
-                        </div>
+                        <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                            View Details
+                        </button>
                     </div>
-                </a>
-            @endforeach
-        </div>
-
-        @if($pets->isEmpty())
-            <div class="text-center text-gray-500 mt-12 text-xl">
-                No pets available for adoption right now. Check back soon!
-            </div>
-        @endif
+                </div>
+            </a>
+        @endforeach
     </div>
+
+    @if($pets->isEmpty())
+        <div class="text-center text-gray-500 mt-12 text-xl">
+            No pets available for adoption right now. Check back soon!
+        </div>
+    @endif
+</div>
+
 
     <footer class="footer">
         <div class="container">

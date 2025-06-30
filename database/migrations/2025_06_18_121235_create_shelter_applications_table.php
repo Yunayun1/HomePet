@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone')->nullable();
             $table->string('address');
-            $table->string('proof_document'); // maybe file path or name
+            $table->string('proof_document'); 
             $table->text('message')->nullable();
             $table->timestamps();
         });

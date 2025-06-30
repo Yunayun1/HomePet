@@ -33,7 +33,7 @@ class ApplicationController extends Controller
     // Show shelter form
     public function showShelterForm()
     {
-        return view('applications.shelter-form');
+        return view('application.shelter-form');
     }
 
     // Handle shelter form submission
